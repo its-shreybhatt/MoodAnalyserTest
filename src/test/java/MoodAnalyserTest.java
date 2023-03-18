@@ -15,4 +15,25 @@ public class MoodAnalyserTest {
         String mood = object.analyseMood("I am in any mood");
         Assert.assertEquals("happy", mood);
     }
+
+    @Test
+    public void givenSentenceInConstructor_WhenContainsSad_ShouldReturnSad() {
+        MoodAnalyser object = new MoodAnalyser("I am in sad mood");
+        String message = object.analyseMood();
+        Assert.assertEquals("sad", message);
+    }
+
+    @Test
+    public void givenSentenceInConstructor_WhenContainshappy_ShouldReturnSad() {
+        MoodAnalyser object = new MoodAnalyser("I am in happy mood");
+        String message = object.analyseMood();
+        Assert.assertEquals("sad", message);
+    }
+
+    @Test
+    public void givenSentence_WhenContainsHappy_ShouldReturnHappy() {
+        MoodAnalyser object = new MoodAnalyser();
+        String message = object.analyseMood("I am in happy mood");
+        Assert.assertEquals("happy", message);
+    }
 }
