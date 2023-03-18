@@ -3,14 +3,14 @@ import org.junit.Assert;
 
 public class MoodAnalyserTest {
     @Test
-    public void givenSentence_WhenContainsSad_ShouldReturnSad() {
+    public void givenSentence_WhenContainsSad_ShouldReturnSad() throws MoodAnalysisException {
         MoodAnalyser object = new MoodAnalyser();
         String mood = object.analyseMood("I am in sad mood");
         Assert.assertEquals("sad", mood);
     }
 
     @Test
-    public void givenSentence_WhenDoNotContainsSad_ShouldReturnHappy() {
+    public void givenSentence_WhenDoNotContainsSad_ShouldReturnHappy() throws MoodAnalysisException {
         MoodAnalyser object = new MoodAnalyser();
         String mood = object.analyseMood("I am in any mood");
         Assert.assertEquals("happy", mood);
@@ -31,15 +31,35 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenSentence_WhenContainsHappy_ShouldReturnHappy() {
+    public void givenSentence_WhenContainsHappy_ShouldReturnHappy() throws MoodAnalysisException {
         MoodAnalyser object = new MoodAnalyser();
         String message = object.analyseMood("I am in happy mood");
         Assert.assertEquals("happy", message);
     }
+//    @Test
+//    public void givenSentence_WhenPassedNull_ShouldReturnHappy () throws MoodAnalysisException {
+//        MoodAnalyser object = new MoodAnalyser();
+//            String message = object.analyseMood(null);
+//            Assert.assertEquals("happy",message);
+//    }
+
     @Test
-    public void givenSentence_WhenPassedNull_ShouldReturnHappy() {
+    public void givenSentence_WhenPassedNull_ShouldPassFromCustom(){
         MoodAnalyser object = new MoodAnalyser();
-        String message = object.analyseMood(null);
-        Assert.assertEquals("happy", message);
+        try {
+           String message=object.analyseMood(null);
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.ENTERED_NULL, e.type);
+        }
+    }
+
+    @Test
+    public void givenSentence_WhenPassedEmpty_ShouldPassFromCustom(){
+        MoodAnalyser object = new MoodAnalyser();
+        try {
+         String message=object.analyseMood("");
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.ExceptionType.ENTERED_EMPTY, e.type);
+        }
     }
 }
