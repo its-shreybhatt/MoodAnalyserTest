@@ -36,12 +36,6 @@ public class MoodAnalyserTest {
         String message = object.analyseMood("I am in happy mood");
         Assert.assertEquals("happy", message);
     }
-//    @Test
-//    public void givenSentence_WhenPassedNull_ShouldReturnHappy () throws MoodAnalysisException {
-//        MoodAnalyser object = new MoodAnalyser();
-//            String message = object.analyseMood(null);
-//            Assert.assertEquals("happy",message);
-//    }
 
     @Test
     public void givenSentence_WhenPassedNull_ShouldPassFromCustom(){
